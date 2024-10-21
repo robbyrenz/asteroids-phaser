@@ -30,6 +30,7 @@ export class Preloader extends Scene {
     this.load.image("player", "player/player.png");
     this.load.image("meteor_small", "enemies/meteor_small.png");
     this.load.image("meteor_large", "enemies/meteor_large.png");
+    this.load.audio("main_menu", "audio/spaceEngineLarge_001.ogg");
   }
 
   create() {

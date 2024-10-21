@@ -8,8 +8,8 @@ export class MainMenu extends Scene {
     super("MainMenu");
   }
   init() {
-    // this.cameras.main.fadeIn(1000, 0, 0, 0);
-    // Make the title screen suddenly appear, along with a big sci-fi sound, a la Alien: Romulus
+    // Make the title screen suddenly appear, thanks to 'DelayedScene', then play a loud sci-fi sound, a la Alien: Romulus
+    this.sound.add("main_menu").setLoop(true).play();
   }
 
   create() {
@@ -35,6 +35,7 @@ export class MainMenu extends Scene {
     }).setOrigin(0.5);
 
     this.input.once("pointerdown", () => {
+      this.sound.stopByKey("main_menu");
       this.scene.start("Game");
     });
   }
