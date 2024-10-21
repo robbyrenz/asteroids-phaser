@@ -27,6 +27,9 @@ export class Preloader extends Scene {
     this.load.setPath("assets");
 
     this.load.image("logo", "logo.png");
+    this.load.image("player", "player/player.png");
+    this.load.image("meteorSmall", "enemies/meteor_small.png");
+    this.load.image("meteorLarge", "enemies/meteor_large.png");
   }
 
   create() {
