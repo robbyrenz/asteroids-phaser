@@ -1,14 +1,14 @@
 import { Scene } from "phaser";
 
 export class Preloader extends Scene {
+  loading_text: Phaser.GameObjects.Text;
+
   constructor() {
     super("Preloader");
   }
 
   init() {
-    //  We loaded this image in our Boot Scene, so we can display it here
-    this.add.image(512, 384, "background");
-
+    this.cameras.main.fadeIn(1000, 0, 0, 0);
     //  A simple progress bar. This is the outline of the bar.
     this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
 
@@ -23,7 +23,6 @@ export class Preloader extends Scene {
   }
 
   preload() {
-    //  Load the assets for the game - Replace with your own assets
     this.load.setPath("assets");
 
     this.load.image("logo", "logo.png");
@@ -36,7 +35,29 @@ export class Preloader extends Scene {
     //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
     //  For example, you can define global animations here, so we can use them in other scenes.
 
-    //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-    this.scene.start("MainMenu");
+    this.loading_text = this.add.text(
+      this.scale.width / 2 - 140,
+      this.scale.height / 2 - 120,
+      "Loading",
+      {
+        fontFamily: "Arial Black",
+        fontSize: 64,
+        color: "#ffffff",
+        stroke: "#000000",
+        strokeThickness: 8,
+        align: "center",
+      },
+    );
+
+    this.time.addEvent({
+      delay: 2000,
+      callback: () => {
+        const main_camera = this.cameras.main.fadeOut(1000, 0, 0, 0);
+        // Fadeout complete
+        main_camera.once("camerafadeoutcomplete", () => {
+          this.scene.start("SplashScene");
+        });
+      },
+    });
   }
 }
