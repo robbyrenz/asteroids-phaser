@@ -20,7 +20,7 @@ export class SplashScene extends Scene {
     logo.postFX.addShine(1, .2, 5);
 
     this.time.addEvent({
-      delay: 2000,
+      delay: 3000,
       callback: () => {
         const main_camera = this.cameras.main.fadeOut(1000, 0, 0, 0);
         // Fadeout complete

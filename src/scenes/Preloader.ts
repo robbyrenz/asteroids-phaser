@@ -26,6 +26,7 @@ export class Preloader extends Scene {
     this.load.setPath("assets");
 
     this.load.image("logo", "logo.png");
+    this.load.image("background", "background.png");
     this.load.image("player", "player/player.png");
     this.load.image("meteor_small", "enemies/meteor_small.png");
     this.load.image("meteor_large", "enemies/meteor_large.png");
@@ -50,7 +51,7 @@ export class Preloader extends Scene {
     );
 
     this.time.addEvent({
-      delay: 2000,
+      delay: 1000,
       callback: () => {
         const main_camera = this.cameras.main.fadeOut(1000, 0, 0, 0);
         // Fadeout complete
